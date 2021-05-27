@@ -22,13 +22,10 @@ public class Mapper<T> implements RowMapper<T>, Serializable {
         for (Field field : classType.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                field.set(result, rs.getObject(Optional.of(field.getDeclaredAnnotation(Column.class).name()).orElse(underScore(field))));
+                field.set(result, rs.getObject(Optional.of(field.getDeclaredAnnotation(Column.class).name())
+                        .orElse(field.getName().replaceAll("([A-Z])", "_$1").toLowerCase())));
             } catch (Exception ignored) {}
         }
         return classType.cast(result);
-    }
-
-    private String underScore(Field field) {
-        return field.getName().replaceAll("([A-Z])", "_$1").toLowerCase();
     }
 }
