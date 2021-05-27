@@ -5,13 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.Optional;
 
 @AllArgsConstructor
-public class MapperService<T> implements RowMapper<T>, Serializable {
+public class MapperService<T> implements RowMapper<T> {
 
     private final Class<T> classType;
 
