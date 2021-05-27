@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
+import java.util.Optional;
 
 public class Mapper<T> implements RowMapper<T>, Serializable {
 
@@ -21,13 +22,8 @@ public class Mapper<T> implements RowMapper<T>, Serializable {
         for (Field field : classType.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                if (field.getDeclaredAnnotation(Column.class) == null) {
-                    field.set(result, rs.getObject(underScore(field)));
-                } else {
-                    field.set(result, rs.getObject(field.getDeclaredAnnotation(Column.class).name()));
-                }
-            } catch (Exception ignored) {
-            }
+                field.set(result, rs.getObject(Optional.of(field.getDeclaredAnnotation(Column.class).name()).orElse(underScore(field))));
+            } catch (Exception ignored) {}
         }
         return classType.cast(result);
     }
