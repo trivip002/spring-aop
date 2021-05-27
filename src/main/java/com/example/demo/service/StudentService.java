@@ -14,6 +14,6 @@ public class StudentService {
     private JdbcTemplate jdbcTemplate;
 
     public List<Student> getListStudent() {
-        return jdbcTemplate.query("SELECT * FROM student", new Student());
+        return jdbcTemplate.query("SELECT * FROM student", new MapperService<>(Student.class));
     }
 }

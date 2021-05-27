@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Student extends Mapper<Student> {
+public class Student {
     private static final long serialVersionUID = 8889260784883898174L;
     @Column(name = "student_id")
     private long id;

@@ -1,6 +1,7 @@
-package com.example.demo.model;
+package com.example.demo.service;
 
 import com.example.demo.aop.Column;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -9,11 +10,14 @@ import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.Optional;
 
-public class Mapper<T> implements RowMapper<T>, Serializable {
+@AllArgsConstructor
+public class MapperService<T> implements RowMapper<T>, Serializable {
+
+    private final Class<T> classType;
 
     @Override
     public T mapRow(ResultSet resultSet, int i) {
-        return convertToObject((Class<T>) this.getClass(), resultSet);
+        return convertToObject(classType, resultSet);
     }
 
     @SneakyThrows

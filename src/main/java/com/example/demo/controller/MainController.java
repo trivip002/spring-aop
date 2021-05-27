@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.MemberService;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.AopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class MainController {
     @Autowired
     private StudentService studentService;
 
-    @Autowired
-    private MemberService memberService;
-
     @GetMapping("/demo-aop")
     public Object getUser() {
         aopService.testAop("Tri");
@@ -34,7 +30,6 @@ public class MainController {
     public Object getStudent() {
         Map<String, Object> result = new HashMap<>();
         result.put("student", studentService.getListStudent());
-        //result.put("member", memberService.getListMember());
         return result;
     }
 
