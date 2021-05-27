@@ -12,15 +12,12 @@ import java.sql.SQLException;
 @NoArgsConstructor
 public class Student implements Serializable {
     private static final long serialVersionUID = 8889260784883898174L;
-   /* public Student(ResultSet rs) throws SQLException {
-        this.id = rs.getInt("student_id");
-        this.studentCode = rs.getString("student_code");
-        this.studentName = rs.getString("student_name");
-    }*/
     @Key(column = "student_id")
     private long id;
     @Key(column = "student_name")
     private String studentName;
     @Key(column = "student_code")
     private String studentCode;
+    @Key(column = "phone_number")
+    private String phoneNumber;
 }

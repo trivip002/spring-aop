@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.aop.ORMMapper;
-import com.example.demo.model.Student;
+import com.example.demo.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class StudentService {
-
+public class MemberService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Student> getListStudent() {
-        return jdbcTemplate.query("SELECT * FROM student", (rs, i) -> ORMMapper.convertToObject(Student.class, rs));
+    public List<Member> getListMember() {
+        return jdbcTemplate.query("SELECT * FROM member", (rs, i) -> ORMMapper.convertToObject(Member.class, rs));
     }
-
 }
