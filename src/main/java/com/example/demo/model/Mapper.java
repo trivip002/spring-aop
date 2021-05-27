@@ -17,7 +17,7 @@ public class Mapper<T> implements RowMapper<T>, Serializable {
 
     @SneakyThrows
     private T convertToObject(Class<T> classType, ResultSet rs) {
-        Object result = classType.getDeclaredConstructor().newInstance();
+        T result = classType.getDeclaredConstructor().newInstance();
         for (Field field : classType.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
