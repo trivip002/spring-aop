@@ -12,15 +12,15 @@ public class AspectHandle {
 
     @Before(value = "execution(* com.example.demo.service.AopService.*(..))")
     public void logBeforeRunFunc(JoinPoint joinPoint) {
-        System.out.println(joinPoint.getSignature().getName() + " >> Before With Params >> " + joinPoint.getArgs()[0]);
+        System.out.println(joinPoint.getSignature().getName() + " >> @Before >> Params >> " + joinPoint.getArgs()[0]);
     }
 
     @After(value = "execution(* com.example.demo.service.AopService.*(..))")
     public void logAfterRunFunc(JoinPoint joinPoint) {
-        System.out.println(joinPoint.getSignature().getName() + " >> After With Params >> " + joinPoint.getArgs()[0]);
+        System.out.println(joinPoint.getSignature().getName() + " >> @After >> Params >> " + joinPoint.getArgs()[0]);
     }
 
-   /* @Around(value = "execution(* com.example.demo.service.UserService.*(..))")
+   /* @Around(value = "execution(* com.example.demo.service.AopService.*(..))")
     public void logAroundRunFunc(JoinPoint joinPoint) {
         System.out.println(joinPoint.getSignature().getName() + " >> Around With Params >> " + joinPoint.getArgs()[0]);
     }*/
@@ -33,6 +33,6 @@ public class AspectHandle {
 
     @AfterReturning(value = "execution(* com.example.demo.service.AopService.*(..))", returning = "result")
     public void logAfterReturnValue(JoinPoint joinPoint, Object result) {
-        System.out.println(joinPoint.getSignature().getName() + " >> After Return >> " + result );
+        System.out.println(joinPoint.getSignature().getName() + " >> @AfterReturn >> " + result );
     }
 }

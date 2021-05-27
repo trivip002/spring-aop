@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.aop.ORMMapper;
 import com.example.demo.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +13,6 @@ public class MemberService {
     private JdbcTemplate jdbcTemplate;
 
     public List<Member> getListMember() {
-        return jdbcTemplate.query("SELECT * FROM member", (rs, i) -> ORMMapper.convertToObject(Member.class, rs));
+        return jdbcTemplate.query("SELECT * FROM member", new Member());
     }
 }

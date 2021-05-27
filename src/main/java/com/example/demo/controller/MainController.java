@@ -23,9 +23,11 @@ public class MainController {
     @Autowired
     private MemberService memberService;
 
-    @GetMapping("/get-user")
+    @GetMapping("/demo-aop")
     public Object getUser() {
-        return aopService.getUserByName("Tri");
+        aopService.testAop("Tri");
+        aopService.testAop2("Tri");
+        return "";
     }
 
     @GetMapping("/get-data")

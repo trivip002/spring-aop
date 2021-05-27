@@ -1,18 +1,20 @@
 package com.example.demo.model;
 
-import com.example.demo.aop.Key;
-import lombok.Data;
+import com.example.demo.aop.Column;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
-@Data
-public class Member {
-    @Key(column = "member_id")
+@Getter
+@Setter
+public class Member extends Mapper<Member> {
+    @Column(name = "member_id")
     private long memberId;
-    @Key(column = "member_name")
+    @Column(name = "member_name")
     private String name;
-    @Key(column = "member_phone")
+    @Column(name = "member_phone")
     private String phone;
-    @Key(column = "member_sequence")
+    @Column(name = "member_sequence")
     private int sequence;
 }
