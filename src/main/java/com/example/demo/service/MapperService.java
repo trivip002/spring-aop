@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class MapperService<T> implements RowMapper<T> {
@@ -25,8 +24,10 @@ public class MapperService<T> implements RowMapper<T> {
         for (Field field : classType.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                field.set(result, rs.getObject(Optional.of(field.getDeclaredAnnotation(Column.class).name())
-                        .orElse(field.getName().replaceAll("([A-Z])", "_$1").toLowerCase())));
+                String columnName = field.getDeclaredAnnotation(Column.class) != null ?
+                        field.getDeclaredAnnotation(Column.class).name() :
+                        field.getName().replaceAll("([A-Z])", "_$1").toLowerCase();
+                field.set(result, rs.getObject(columnName));
             } catch (Exception ignored) {}
         }
         return classType.cast(result);
